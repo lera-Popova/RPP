@@ -1,0 +1,25 @@
+create table region (
+	id INT PRIMARY KEY,
+	name VARCHAR NOT NULL
+)
+
+
+create table tax_param (
+	id SERIAL PRIMARY KEY,
+	city_id INT REFERENCES region(id) NOT NULL,
+	from_hp_car INT NOT NULL, 
+	to_hp_car INT NOT NULL,
+	from_production_year_car INT NOT NULL,
+	to_production_year_car INT NOT NULL,
+	rate NUMERIC NOT NULL
+)
+
+create table auto (
+	id SERIAL PRIMARY KEY,
+	city_id INT REFERENCES region(id) NOT NULL,
+	tax_id INT REFERENCES tax_param(id) NOT NULL, 
+	name VARCHAR NOT NULL,
+	horse_power INT NOT NULL,
+	production_year INT NOT NULL,
+	tax NUMERIC NOT NULL
+)
